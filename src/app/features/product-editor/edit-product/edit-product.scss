@@ -1,0 +1,207 @@
+// ===== Variables =====
+$btn-color: #8184af;
+
+// ===== Base Layout =====
+.edit-product {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  color: #525369;
+  background-color: #fff;
+  max-width: 1500px;
+  padding: 32px;
+  border-radius: 20px;
+
+  &__loading,
+  &__error {
+    font-size: 18px;
+    text-align: center;
+    color: #666;
+  }
+
+  &__form {
+    background-color: #fff;
+    padding: 32px;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  &__title {
+    font-size: 28px;
+    font-weight: 700;
+    margin-bottom: 24px;
+  }
+
+  .header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 24px;
+    gap: 16px;
+
+    &__title {
+      font-family: "Raleway";
+      font-size: 25px;
+      font-weight: 700;
+      color: #525369;
+      margin: 0;
+    }
+
+    &__actions {
+      display: flex;
+      gap: 12px;
+
+      @media (max-width: 600px) {
+        width: 100%;
+        justify-content: flex-end;
+      }
+    }
+
+    &__button {
+      background: $btn-color;
+      color: #333;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      padding: 8px 14px;
+      font-size: 14px;
+      cursor: pointer;
+      transition: background-color 0.2s ease;
+
+      &:hover {
+        background-color: #e0e0e0;
+      }
+
+      &--edit {
+        color: #fff;
+        border: none;
+
+        &:hover {
+          background: #8184afc5;
+        }
+      }
+    }
+  }
+
+  &__grid {
+    display: flex;
+    gap: 32px;
+    align-items: flex-start;
+    flex-wrap: wrap;
+
+    @media (max-width: 768px) {
+      flex-direction: column;
+    }
+  }
+
+  &__left {
+    flex: 2;
+    min-width: 300px;
+  }
+
+  &__right {
+    flex: 1;
+    min-width: 250px;
+  }
+
+  // ===== Section Title =====
+  &__section {
+    margin-bottom: 32px;
+  }
+
+  &__section-title {
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 16px;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 4px;
+  }
+
+  // ===== Form Fields =====
+  &__field {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 16px;
+
+    label {
+      font-weight: 600;
+      margin-bottom: 6px;
+      font-size: 14px;
+    }
+
+    input,
+    textarea {
+      padding: 10px 12px;
+      font-size: 15px;
+      border-radius: 6px;
+      background: #fff;
+    }
+
+    textarea {
+      min-height: 80px;
+      resize: vertical;
+    }
+  }
+
+  // ===== Photos =====
+  &__images {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  &__image-block {
+    background: #fff;
+    padding: 16px;
+
+    p {
+      font-weight: 500;
+      margin-bottom: 8px;
+    }
+
+    img {
+      width: 100%;
+      height: auto;
+      border-radius: 6px;
+      border: 1px solid #ddd;
+    }
+  }
+
+  // ===== Buttons =====
+  &__actions {
+    margin-top: 32px;
+    display: flex;
+    gap: 16px;
+  }
+
+  &__save-button,
+  &__cancel-button {
+    padding: 12px 20px;
+    font-size: 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    border: none;
+  }
+
+  &__save-button {
+    color: #fff;
+
+    &:hover:enabled {
+    }
+
+    &:disabled {
+      background-color: #ccc;
+      cursor: not-allowed;
+    }
+  }
+
+  &__cancel-button {
+    background-color: #f0f0f0;
+    color: #333;
+
+    &:hover {
+      background-color: #e0e0e0;
+    }
+  }
+}

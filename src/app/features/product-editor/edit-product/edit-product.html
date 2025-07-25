@@ -1,0 +1,253 @@
+<div class="edit-product">
+  <ng-container *ngIf="loading(); else content">
+    <p class="edit-product__loading">Loading product...</p>
+  </ng-container>
+
+  <ng-template #content>
+    <ng-container *ngIf="!error(); else errorTpl">
+      <form [formGroup]="form" (ngSubmit)="onSave()">
+        <header class="header">
+          <h1 class="header__title">{{ data()?.id }}</h1>
+
+          <div class="edit-product__actions">
+            <button class="header__button header__button--edit" (click)="onEdit()">
+              <img src="assets/icons/edit.svg" alt="">
+              Edit
+            </button>
+            <img src="assets/icons/back.svg" class="header__img" (click)="onBack()" />
+            <img src="assets/icons/back.svg" class="header__img" style="transform: rotate(180deg)" (click)="onForward()" />
+            <img src="assets/icons/close.svg" class="header__img" (click)="onClose()" />
+          </div>
+        </header>
+
+
+        <main>
+          <div class="edit-product__grid">
+            <!-- LEFT SECTION -->
+            <div class="edit-product__list">
+              <div class="edit-product__field">
+                <label for="brand">Brand</label>
+                <input id="brand" type="text" formControlName="brand" />
+              </div>
+
+              <div class="edit-product__field">
+                <label for="model">Model/Series</label>
+                <input id="model" type="text" formControlName="model" />
+              </div>
+
+              <div class="edit-product__field">
+                <label for="devicePN">Devise P/N</label>
+                <input id="devicePN" type="text" formControlName="devicePN" />
+              </div>
+
+              <div class="edit-product__field">
+                <label for="devType">Dev. Type</label>
+                <input id="devType" type="text" formControlName="devType" />
+              </div>
+
+              <div class="edit-product__field">
+                <label for="rnk">RNK</label>
+                <input id="rnk" type="number" formControlName="rnk" />
+              </div>
+
+              <div class="edit-product__field">
+                <label for="minPrice">Min Price</label>
+                <input id="minPrice" type="number" formControlName="minPrice" />
+              </div>
+
+              <div class="edit-product__field">
+                <label for="maxPrice">Max Price</label>
+                <input id="maxPrice" type="number" formControlName="maxPrice" />
+              </div>
+
+              <div class="edit-product__field">
+                <label for="quantity">Quantity</label>
+                <input id="quantity" type="number" formControlName="quantity" />
+              </div>
+
+              <div class="edit-product__field">
+                <label for="EPrq">EPrq</label>
+                <input id="ePrq" type="text" formControlName="ePrq" />
+              </div>
+
+              <div class="edit-product__field">
+                <label for="EA4q">EA4q</label>
+                <input id="eA4q" type="text" formControlName="eA4q" />
+              </div>
+
+              <div class="edit-product__field">
+                <label for="Photo_device">Photo_device</label>
+                <input id="photoDevice" type="text" formControlName="photoDevice" />
+              </div>
+            </div>
+
+            <!-- CENTER SECTION -->
+            <div class="edit-product__list">
+              <div class="edit-product__field">
+                <label for="sku">SKU</label>
+                <input id="sku" type="text" formControlName="sku" />
+              </div>
+
+              <div class="edit-product__field">
+                <label for="lUser">L-User</label>
+                <input id="lUser" type="text" formControlName="lUser" />
+              </div>
+
+              <div class="edit-product__field">
+                <label for="category">Category</label>
+                <input id="category" type="text" formControlName="category" />
+              </div>
+
+              <div class="edit-product__field">
+                <label for="eUser">E-User</label>
+                <input id="eUser" type="text" formControlName="eUser" />
+              </div>
+
+              <div class="edit-product__field">
+                <label for="greenId">Green ID</label>
+                <input id="greenId" type="text" formControlName="greenId" />
+              </div>
+
+              <div class="edit-product__field">
+                <label for="editAt">Edit At</label>
+                <input id="editAt" type="text" formControlName="editAt" />
+              </div>
+
+              <div class="edit-product__field">
+                <label for="createAt">Create At</label>
+                <input id="createAt" type="text" formControlName="createAt" />
+              </div>
+
+              <div class="edit-product__field">
+                <label for="amazonLink">Amazon Listing Src</label>
+                <input id="amazonLink" type="text" formControlName="amazonLink" />
+              </div>
+
+              <div class="edit-product__field">
+                <label for="elccq">ELCCq</label>
+                <input id="elccq" type="number" formControlName="elccq" />
+              </div>
+
+              <div class="edit-product__field">
+                <label for="amazq">Amazq</label>
+                <input id="amazq" type="number" formControlName="amazq" />
+              </div>
+
+              <div class="edit-product__field">
+                <label for="notes">Notes</label>
+                <input id="notes" formControlName="notes" />
+              </div>
+            </div>
+
+            <!-- RIGHT SECTION -->
+            <div class="edit-product__right">
+              <div class="edit-product__images">
+                <div class="edit-product__image-block">
+                  <p>Device Photo</p>
+                  <img [src]="form.get('photoDevice')?.value" alt="Device Photo" />
+                </div>
+                <div class="edit-product__image-block">
+                  <p>Data Plate</p>
+                  <img [src]="form.get('photoPlate')?.value" alt="Data Plate" />
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ===== LIST LOCATION ===== -->
+          <section class="edit-product__section">
+            <h2 class="edit-product__section-title">List Location</h2>
+            <table class="edit-product__table">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Brand</th>
+                  <th>Category</th>
+                  <th>Device P/N</th>
+                  <th>Qty</th>
+                  <th>Condition</th>
+                  <th>User</th>
+                  <th>Notes</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let row of listLocation">
+                  <td>{{ row.id }}</td>
+                  <td>{{ row.brand }}</td>
+                  <td>{{ row.category }}</td>
+                  <td>{{ row.devicePN }}</td>
+                  <td>{{ row.quantity }}</td>
+                  <td>{{ row.condition }}</td>
+                  <td>{{ row.user }}</td>
+                  <td>{{ row.notes }}</td>
+                </tr>
+              </tbody>
+            </table>
+          </section>
+
+          <!-- ===== EBAY LISTINGS ===== -->
+          <section class="edit-product__section">
+            <h2 class="edit-product__section-title">eBay Listings</h2>
+            <table class="edit-product__table">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>SKU</th>
+                  <th>Title</th>
+                  <th>Price</th>
+                  <th>Qty</th>
+                  <th>Inventory</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let row of ebayListings">
+                  <td>{{ row.id }}</td>
+                  <td>{{ row.sku }}</td>
+                  <td>{{ row.title }}</td>
+                  <td>{{ row.price }}</td>
+                  <td>{{ row.qty }}</td>
+                  <td>{{ row.inventory }}</td>
+                </tr>
+              </tbody>
+            </table>
+          </section>
+
+          <!-- ===== SAME PRODUCTS ===== -->
+          <section class="edit-product__section">
+            <h2 class="edit-product__section-title">Same Products</h2>
+            <table class="edit-product__table">
+              <thead>
+                <tr>
+                  <th>Original ID</th>
+                  <th>Same ID</th>
+                  <th>Editor</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let row of sameProducts">
+                  <td>{{ row.originalId }}</td>
+                  <td>{{ row.sameId }}</td>
+                  <td>{{ row.editor }}</td>
+                </tr>
+              </tbody>
+            </table>
+          </section>
+
+          <!-- SAVE BUTTON -->
+          <div class="edit-product__actions">
+            <button type="submit" class="edit-product__save-button" [disabled]="form.invalid">
+              Save Changes
+            </button>
+            <button type="button" class="edit-product__cancel-button" (click)="onClose()">
+              Cancel
+            </button>
+          </div>
+        </main>
+      </form>
+    </ng-container>
+
+    <ng-template #errorTpl>
+      <p class="edit-product__error">Error loading product data.</p>
+    </ng-template>
+  </ng-template>
+</div>
