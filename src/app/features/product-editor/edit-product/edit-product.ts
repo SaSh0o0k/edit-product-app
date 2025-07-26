@@ -85,7 +85,7 @@ export class EditProduct {
   data = signal<Product | null>(null);
 
   constructor() {
-    setTimeout(() => {
+    // setTimeout(() => {
       try {
         const data: Product = productData as Product;
         this.data.set(data);
@@ -95,7 +95,7 @@ export class EditProduct {
       } finally {
         this.loading.set(false);
       }
-    }, 1000);
+    // }, 1000);
   }
 
   onEdit() {
