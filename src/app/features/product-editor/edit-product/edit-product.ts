@@ -1,8 +1,10 @@
 import { Component, inject, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import productData from '../../../../assets/product-data.json';
-import { not } from 'rxjs/internal/util/not';
+import productData from '../../../../assets/data/product-data.json';
+import listLocationData from '../../../../assets/data/list-location-data.json';
+import ebayListingsData from '../../../../assets/data/ebay-listings-data.json';
+import sameProductsData from '../../../../assets/data/same-products-data.json';
 
 interface Product {
   id: string;
@@ -68,34 +70,39 @@ export class EditProduct {
     photoPlate: [''],
   });
 
-  listLocation = [
-    { id: 'G112082', brand: 'NEC', category: 'Projectors', devicePN: 'CP34B', quantity: 52, condition: 'U/ref', user: 'Script', notes: 'No lamp' },
-  ];
-
-  ebayListings = [
-    { id: '325064386872', sku: 'SRQ/P,Ne_ME331X', title: '3300 ANSI 3LCD Projector 1080p...', price: 114.27, qty: 274, inventory: 3376 },
-  ];
-
-  sameProducts = [
-    { originalId: 'G112082', sameId: 'G900559', editor: 'Script' },
-  ];
+  listLocation = listLocationData;
+  ebayListings = ebayListingsData;
+  sameProducts = sameProductsData;
 
   loading = signal(true);
   error = signal(false);
   data = signal<Product | null>(null);
 
   constructor() {
-    // setTimeout(() => {
-      try {
-        const data: Product = productData as Product;
-        this.data.set(data);
-        this.form.patchValue(data);
-      } catch {
-        this.error.set(true);
-      } finally {
-        this.loading.set(false);
-      }
-    // }, 1000);
+    try {
+      const data: Product = productData as Product;
+
+      const formatDate = (isoString: string) => {
+        const date = new Date(isoString);
+        const d = date.getDate();
+        const m = date.getMonth() + 1;
+        const y = date.getFullYear();
+        const hh = String(date.getHours()).padStart(2, '0');
+        const mm = String(date.getMinutes()).padStart(2, '0');
+        return `${d}.${m}.${y} ${hh}:${mm}`;
+      };
+
+      this.data.set(data);
+      this.form.patchValue({
+        ...data,
+        editAt: data.editAt ? formatDate(data.editAt) : '',
+        createAt: data.createAt ? formatDate(data.createAt) : '',
+      });
+    } catch {
+      this.error.set(true);
+    } finally {
+      this.loading.set(false);
+    }
   }
 
   onEdit() {

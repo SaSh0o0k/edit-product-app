@@ -219,7 +219,7 @@
               <div class="edit-product__field">
                 <label for="notes">Notes</label>
                 <div class="edit-product__input-img">
-                  <input id="notes" formControlName="notes" />
+                  <input id="notes" formControlName="notes" placeholder="----------" />
                   <div class="edit-product__input-img-block"></div>
                 </div>
               </div>
@@ -244,32 +244,38 @@
             </div>
           </div>
 
+
           <!-- ===== LIST LOCATION ===== -->
           <section class="edit-product__section">
-            <h2 class="edit-product__section-title">List Location</h2>
+            <h2 class="edit-product__section-title">
+              List Location
+              <span class="edit-product__section-count">{{ listLocation.length }}</span>
+            </h2>
             <table class="edit-product__table">
               <thead>
                 <tr>
-                  <th>ID</th>
-                  <th>Brand</th>
-                  <th>Category</th>
-                  <th>Device P/N</th>
-                  <th>Qty</th>
-                  <th>Condition</th>
-                  <th>User</th>
-                  <th>Notes</th>
+                  <th style="width: 5%;">ID</th>
+                  <th style="width: 10%;">Brand</th>
+                  <th style="width: 10%;">Category</th>
+                  <th style="width: 10%;">Device P/N</th>
+                  <th style="width: 5%;">Gty</th>
+                  <th style="width: 10%;">Condition</th>
+                  <th style="width: 10%;">Edit User</th>
+                  <th style="width: 20%;">Notes</th>
+                  <th style="width: 5%;"></th>
                 </tr>
               </thead>
               <tbody>
                 <tr *ngFor="let row of listLocation">
-                  <td>{{ row.id }}</td>
-                  <td>{{ row.brand }}</td>
-                  <td>{{ row.category }}</td>
-                  <td>{{ row.devicePN }}</td>
-                  <td>{{ row.quantity }}</td>
-                  <td>{{ row.condition }}</td>
-                  <td>{{ row.user }}</td>
-                  <td>{{ row.notes }}</td>
+                  <td [title]="row.id">{{ row.id }}</td>
+                  <td [title]="row.brand">{{ row.brand }}</td>
+                  <td [title]="row.category">{{ row.category }}</td>
+                  <td [title]="row.devicePN">{{ row.devicePN }}</td>
+                  <td [title]="row.quantity">{{ row.quantity }}</td>
+                  <td [title]="row.condition">{{ row.condition }}</td>
+                  <td [title]="row.user">{{ row.user }}</td>
+                  <td [title]="row.notes">{{ row.notes }}</td>
+                  <td><img src="assets/icons/arrow-circle.svg" alt="expand" /></td>
                 </tr>
               </tbody>
             </table>
@@ -277,26 +283,33 @@
 
           <!-- ===== EBAY LISTINGS ===== -->
           <section class="edit-product__section">
-            <h2 class="edit-product__section-title">eBay Listings</h2>
+            <h2 class="edit-product__section-title">
+              List Ebay Vision Listings
+              <span class="edit-product__section-count">{{ ebayListings.length }}</span>
+            </h2>
             <table class="edit-product__table">
               <thead>
-                <tr>
-                  <th>ID</th>
-                  <th>SKU</th>
-                  <th>Title</th>
-                  <th>Price</th>
-                  <th>Qty</th>
-                  <th>Inventory</th>
+                <tr class="edit-product__ebay-listings">
+                  <th style="width: 10%;">Listing_id</th>
+                  <th style="width: 10%;">SKU</th>
+                  <th style="width: 10%;">Condition_id</th>
+                  <th style="width: 10%;">Product_id</th>
+                  <th style="width: 30%;">Title</th>
+                  <th style="width: 10%;">Price</th>
+                  <th style="width: 10%;">Listing_qty</th>
+                  <th style="width: 10%;">Inventory_qty</th>
                 </tr>
               </thead>
               <tbody>
                 <tr *ngFor="let row of ebayListings">
-                  <td>{{ row.id }}</td>
-                  <td>{{ row.sku }}</td>
-                  <td>{{ row.title }}</td>
-                  <td>{{ row.price }}</td>
-                  <td>{{ row.qty }}</td>
-                  <td>{{ row.inventory }}</td>
+                  <td [title]="row.id">{{ row.id }}</td>
+                  <td [title]="row.sku">{{ row.sku }}</td>
+                  <td [title]="row.conditionId">{{ row.conditionId }}</td>
+                  <td [title]="row.productId">{{ row.productId }}</td>
+                  <td [title]="row.title">{{ row.title }}</td>
+                  <td [title]="row.price">{{ row.price }}</td>
+                  <td [title]="row.qty">{{ row.qty }}</td>
+                  <td [title]="row.inventory">{{ row.inventory }}</td>
                 </tr>
               </tbody>
             </table>
@@ -304,33 +317,37 @@
 
           <!-- ===== SAME PRODUCTS ===== -->
           <section class="edit-product__section">
-            <h2 class="edit-product__section-title">Same Products</h2>
+            <h2 class="edit-product__section-title">
+              Same Products
+              <span class="edit-product__section-count">{{ sameProducts.length }}</span>
+            </h2>
             <table class="edit-product__table">
               <thead>
-                <tr>
-                  <th>Original ID</th>
-                  <th>Same ID</th>
-                  <th>Editor</th>
+                <tr class="edit-product__same-products">
+                  <th style="width: 10%;">Original_id</th>
+                  <th style="width: 10%;">Same_id</th>
+                  <th style="width: 15%;">Fk_edit_employee</th>
+                  <th style="width: 55%;"></th>
+                  <th style="width: 5%;"></th>
                 </tr>
               </thead>
               <tbody>
                 <tr *ngFor="let row of sameProducts">
-                  <td>{{ row.originalId }}</td>
-                  <td>{{ row.sameId }}</td>
-                  <td>{{ row.editor }}</td>
+                  <td [title]="row.originalId">{{ row.originalId }}</td>
+                  <td [title]="row.sameId">{{ row.sameId }}</td>
+                  <td [title]="row.editor">{{ row.editor }}</td>
+                  <th></th>
+                  <td><img src="assets/icons/arrow-circle.svg" alt="expand" /></td>
                 </tr>
               </tbody>
             </table>
           </section>
 
-          <!-- SAVE BUTTON -->
-          <div class="edit-product__actions">
-            <button type="submit" class="edit-product__save-button" [disabled]="form.invalid">
-              Save Changes
-            </button>
-            <button type="button" class="edit-product__cancel-button" (click)="onClose()">
-              Cancel
-            </button>
+
+          <!-- BOTTOM BUTTONS -->
+          <div class="edit-product__bottom-actions">
+            <button type="submit" class="edit-product__expand-button">Expand</button>
+            <button type="button" class="edit-product__add-button">Add</button>
           </div>
         </main>
       </form>
